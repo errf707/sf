@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clicker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .money {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .click-button {
+            padding: 20px;
+            font-size: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .click-button:hover {
+            background-color: #45a049;
+        }
+        .upgrade-button {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .upgrade-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Clicker</h1>
+        <p class="money">Баланс: <span id="balance">$0</span></p>
+        <button class="click-button" onclick="earnMoney()">Заробити гроші</button>
+        <br>
+        <button class="upgrade-button" onclick="buyUpgrade()">Купити апгрейд (+$1 за клік) - $50</button>
+    </div>
+
+    <script>
+        let balance = 0;
+        let earningsPerClick = 1;
+
+        function earnMoney() {
+            balance += earningsPerClick;
+            updateDisplay();
+        }
+
+        function buyUpgrade() {
+            if (balance >= 50) {
+                balance -= 50;
+                earningsPerClick += 1;
+                updateDisplay();
+            } else {
+                alert("Недостатньо грошей!");
+            }
+        }
+
+        function updateDisplay() {
+            document.getElementById('balance').textContent = `$${balance}`;
+        }
+    </script>
+</body>
+</html>
